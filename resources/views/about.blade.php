@@ -5,10 +5,10 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">Welcome</div>
+                <div class="card-header">About Us</div>
 
                 <div class="card-body">
-                  Welcome to Gradr!! Learn more <a href="{{route('about')}}">About us</a>
+                This is the about page! <a href="#"></a>
                 </div>
             </div>
         </div>
