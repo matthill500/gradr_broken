@@ -4,9 +4,15 @@ namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Question;
 
 class QuestionController extends Controller
 {
+  public function __construct()
+  {
+      $this->middleware('auth');
+    //  $this->middleware('role:admin');
+  }
     /**
      * Display a listing of the resource.
      *
@@ -14,7 +20,11 @@ class QuestionController extends Controller
      */
     public function index()
     {
-        //
+        $questions = Question::all();
+
+        return view('user.questions.index')->with([
+          'questions' => $questions
+        ]);
     }
 
     /**
@@ -24,7 +34,7 @@ class QuestionController extends Controller
      */
     public function create()
     {
-        //
+          return view('user.questions.create');
     }
 
     /**
@@ -35,7 +45,19 @@ class QuestionController extends Controller
      */
     public function store(Request $request)
     {
-        //
+      $request->validate([
+        'title' => 'required|max:191',
+        'info' => 'required|min:30|max:300',
+      ]);
+
+      $question = new Question();
+
+      $question->title = $request->input('title');
+      $question->info = $request->input('info');
+
+      $question->save();
+
+      return redirect()->route('user.questions.index');
     }
 
     /**
@@ -46,7 +68,11 @@ class QuestionController extends Controller
      */
     public function show($id)
     {
-        //
+      $question = Question::findOrFail($id);
+
+      return view('user.questions.show')->with([
+        'question' => $question
+      ]);
     }
 
     /**
@@ -57,7 +83,11 @@ class QuestionController extends Controller
      */
     public function edit($id)
     {
-        //
+      $question = Question::findOrFail($id);
+
+      return view('user.questions.edit')->with([
+        'question' => $question
+      ]);
     }
 
     /**
@@ -69,7 +99,20 @@ class QuestionController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+      $question = Question::findOrFail($id);
+
+      $request->validate([
+        'title' => 'required|max:191',
+        'info' => 'required|min:30|max:300',
+      ]);
+
+      $question->title = $request->input('title');
+      $question->info = $request->input('info');
+
+      $question->save();
+
+      return redirect()->route('user.questions.index');
+
     }
 
     /**
@@ -80,6 +123,16 @@ class QuestionController extends Controller
      */
     public function destroy($id)
     {
-        //
+      $question = Question::findOrFail($id);
+
+            $question->delete = 1;
+            $question->update();
+
+
+      return redirect()->route('user.questions.index')->with('status','Requested to delete!');
     }
+
+
+
+
 }

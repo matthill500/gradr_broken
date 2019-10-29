@@ -1,0 +1,46 @@
+@extends('layouts.app')
+
+@section('content')
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card">
+        <div class="card-header">
+          Questions <a href="{{route('user.questions.create')}}" class="btn btn-primary float-right">Add</a>
+
+        </div>
+        <div class="card-body">
+          @if (count($questions) === 0)
+          <p> There are no questions </p>
+          @else
+          <table id="table-questions" class="table table-hover">
+            <thead>
+              <th>Title</th>
+                <th>Info</th>
+           </thead>
+           <tbody>
+             @foreach ($questions as $question)
+             <tr data-id="{{$question->id}}">
+               <td>{{ substr($question->title,'0','20') }}</td>
+               <td>{{ substr($question->info,'0','40') }}</td>
+               <td>
+                 <a href="{{ route('user.questions.show', $question->id )}}" class="btn btn-primary">View</a>
+                 <a href="{{route('user.questions.edit', $question->id )}}" class="btn btn-warning">Edit</a>
+
+                 <form style="display:inline-block" method="POST" action="{{route('user.questions.destroy',$question->id)}}">
+                   
+                   <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                   <button type="submit" class="form-control btn btn-danger">Request Delete</a>
+                </form>
+
+               </td>
+             @endforeach
+           </tbody>
+         </table>
+          @endif
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+@endsection

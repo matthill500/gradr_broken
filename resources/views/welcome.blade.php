@@ -8,7 +8,8 @@
                 <div class="card-header">Welcome</div>
 
                 <div class="card-body">
-                  Welcome to Gradr!! Learn more <a href="{{route('about')}}">About us</a>
+                  Welcome to Gradr!! <a href="{{route('admin.questions.index')}}">Questions</a>
+                <br>  Learn more <a href="{{route('about')}}">About us</a>
                 </div>
             </div>
         </div>

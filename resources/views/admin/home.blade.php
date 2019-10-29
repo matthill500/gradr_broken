@@ -14,7 +14,7 @@
                         </div>
                     @endif
 
-                    You are logged in as an admin!
+                    You are logged in as an admin! <a href="{{route('admin.questions.index')}}">Questions</a>
                 </div>
             </div>
         </div>

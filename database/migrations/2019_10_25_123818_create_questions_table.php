@@ -17,6 +17,7 @@ class CreateQuestionsTable extends Migration
             $table->bigIncrements('id');
             $table->string('title');
             $table->string('info');
+            $table->boolean('delete')->default(0);
             $table->timestamps();
         });
     }
