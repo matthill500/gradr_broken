@@ -28,9 +28,13 @@
                  <a href="{{route('user.questions.edit', $question->id )}}" class="btn btn-warning">Edit</a>
 
                  <form style="display:inline-block" method="POST" action="{{route('user.questions.destroy',$question->id)}}">
-                   
+
                    <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                   @if ($question->delete === 0)
                    <button type="submit" class="form-control btn btn-danger">Request Delete</a>
+                  @else ($question->delete === 1)
+                  <button type="submit" class="form-control btn btn-danger">Undo Delete</a>
+                 @endif
                 </form>
 
                </td>

@@ -12,7 +12,7 @@ class HomeController extends Controller
         $this->middleware('auth');
         $this->middleware('role:admin');
     }
-    
+
     public function index(){
       return view('admin.home');
     }

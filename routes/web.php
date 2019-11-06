@@ -15,12 +15,14 @@
 Route::get('/', 'PageController@welcome')->name('welcome');
 Route::get('/about', 'PageController@about')->name('about');
 
+
 Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/admin/home', 'Admin\HomeController@index')->name('admin.home');
 Route::get('/user/home', 'User\HomeController@index')->name('user.home');
 
 Route::get('/admin/questions', 'Admin\QuestionController@index')->name('admin.questions.index');
+Route::get('/admin/deleteRequests', 'Admin\QuestionController@deleteRequests')->name('admin.questions.deleteRequests');
 Route::get('/admin/questions/create', 'Admin\QuestionController@create')->name('admin.questions.create');
 Route::get('/admin/questions/{id}', 'Admin\QuestionController@show')->name('admin.questions.show');
 Route::post('/admin/questions/store', 'Admin\QuestionController@store')->name('admin.questions.store');

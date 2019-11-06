@@ -28,6 +28,14 @@ class QuestionController extends Controller
           'questions' => $questions
         ]);
     }
+    public function deleteRequests()
+    {
+        $questions = Question::all();
+
+        return view('admin.questions.deleteRequests')->with([
+          'questions' => $questions
+        ]);
+    }
 
     /**
      * Show the form for creating a new resource.

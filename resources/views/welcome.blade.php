@@ -9,7 +9,8 @@
 
                 <div class="card-body">
                   Welcome to Gradr!! <a href="{{route('admin.questions.index')}}">Questions</a>
-                <br>  Learn more <a href="{{route('about')}}">About us</a>
+                <br> Learn more <a href="{{route('about')}}">About us</a>
+                <br> Admin Delete Question <a href="{{route('admin.questions.deleteRequests')}}">requests</a>
                 </div>
             </div>
         </div>
