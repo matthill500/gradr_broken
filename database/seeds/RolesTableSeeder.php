@@ -21,11 +21,5 @@ class RolesTableSeeder extends Seeder
         $role_user->name = 'user';
         $role_user->description = 'An ordinary user';
         $role_user->save();
-
-        $role_secretary = new Role();
-        $role_secretary->name = 'secretary';
-        $role_secretary->description = 'An secretary user';
-        $role_secretary->save();
-
     }
 }

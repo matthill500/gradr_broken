@@ -18,7 +18,10 @@ class CreateQuestionsTable extends Migration
             $table->string('title');
             $table->string('info');
             $table->boolean('delete')->default(0);
+            $table->Integer('user_id')->unsigned();
             $table->timestamps();
+
+            
         });
     }
 

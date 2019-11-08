@@ -5,6 +5,8 @@ namespace App\Http\Controllers\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Question;
+use App\User;
+use Auth;
 
 class QuestionController extends Controller
 {
@@ -21,9 +23,12 @@ class QuestionController extends Controller
     public function index()
     {
         $questions = Question::all();
+        $users = User::all();
 
         return view('user.questions.index')->with([
-          'questions' => $questions
+          'questions' => $questions,
+          'users' => $users
+
         ]);
     }
 
@@ -54,6 +59,7 @@ class QuestionController extends Controller
 
       $question->title = $request->input('title');
       $question->info = $request->input('info');
+      $question->user_id = Auth::user()->getId();
 
       $question->save();
 
