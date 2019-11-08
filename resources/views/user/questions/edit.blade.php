@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.appUser')
 
 @section('content')
   <div class="container">
@@ -19,7 +19,7 @@
             </div>
             @endif
             <form method="POST" action="{{route('user.questions.update', $question->id)}}">
-              <iput type="hidden" name="_method" value="PUT">
+              <iput type="hidden" name="_method" value="POST">
               <iput type="hidden" name="_token">
                 {{ csrf_field() }}
                 <div class="form-group">

@@ -114,7 +114,6 @@ class QuestionController extends Controller
 
       $question->title = $request->input('title');
       $question->info = $request->input('info');
-
       $question->save();
 
       return redirect()->route('user.questions.index');
@@ -127,26 +126,18 @@ class QuestionController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
-    {
-      $question = Question::findOrFail($id);
-            if($question->delete === 0){
-              $question->delete = 1;
-                $question->update();
-                return redirect()->route('user.questions.index')->with('status','Requested to delete!');
-            }else if($question->delete === 1){
-              $question->delete = 0;
-              $question->update();
-              return redirect()->route('user.questions.index')->with('status','Request withdrawn!');
-            }
 
-
-
-
-
-    }
-
-
-
-
+     public function requestDelete($id)
+      {
+       $question = Question::findOrFail($id);
+              if($question->delete === 0){
+                $question->delete = 1;
+                  $question->save();
+                  return redirect()->route('user.questions.index')->with('status','Requested to delete!');
+              }else if($question->delete === 1){
+                $question->delete = 0;
+                $question->save();
+             return redirect()->route('user.questions.index')->with('status','Request withdrawn!');
+               }
+      }
 }

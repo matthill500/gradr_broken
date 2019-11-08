@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.appUser')
 
 @section('content')
 <div class="container">
@@ -14,7 +14,7 @@
                         </div>
                     @endif
 
-                    You are logged in as an ordinary user! <a href="{{route('user.questions.index')}}">Questions</a>
+                    Home Page - You are logged in as an ordinary user! <a href="{{route('user.questions.index')}}">Questions</a>
                 </div>
             </div>
         </div>

@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.appUser')
 
 @section('content')
 <div class="container">
@@ -27,7 +27,7 @@
                  <a href="{{ route('user.questions.show', $question->id )}}" class="btn btn-primary">View</a>
                  <a href="{{route('user.questions.edit', $question->id )}}" class="btn btn-warning">Edit</a>
 
-                 <form style="display:inline-block" method="POST" action="{{route('user.questions.destroy',$question->id)}}">
+                 <form style="display:inline-block" method="POST" action="{{route('user.questions.requestDelete',$question->id)}}">
 
                    <input type="hidden" name="_token" value="{{ csrf_token() }}">
                    @if ($question->delete === 0)
